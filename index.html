@@ -10,7 +10,7 @@
       --text:#1e1e1e;
       --card:#ffffffd9;
       --accent:#6b5b53;
-      /* 放慢节奏：2s 淡入 + 2.5s 间隔 */
+      /* 放慢节奏：2s 段落淡入 + 2.5s 段间隔 */
       --fadeDuration: 2000ms;
       --delayStep: 2500ms;
     }
@@ -55,10 +55,32 @@
     .hint{ position:fixed; left:50%; bottom:24px; transform:translateX(-50%); background:#fff; color:#5b534e; border:1px solid #d7cfc8; padding:10px 14px; border-radius:999px; box-shadow:0 6px 18px rgba(0,0,0,.08); display:none; }
     .pulse{ animation:pulse 1.4s ease-in-out infinite; }
     @keyframes pulse{ 0%{box-shadow:0 0 0 0 rgba(107,91,83,.35)} 70%{box-shadow:0 0 0 14px rgba(107,91,83,0)} 100%{box-shadow:0 0 0 0 rgba(107,91,83,0)} }
+
+    /* --- 最后一页照片舞台 --- */
+    .photo-stage{
+      position: relative;
+      height: 360px;          /* 想更高就调这里 */
+      margin-top: 14px;
+      overflow: hidden;
+      border-radius: 16px;
+      background: #ffffffb8;  /* 想纯透明可删 */
+      backdrop-filter: blur(2px);
+    }
+    .photo{
+      position: absolute;
+      top: 0; left: 0;
+      opacity: 0;
+      border-radius: 12px;
+      box-shadow: 0 10px 26px rgba(0,0,0,.12);
+      transition: opacity 900ms ease;
+      will-change: transform, opacity;
+    }
+    .photo.in{ opacity: 1; }
+    .photo.out{ opacity: 0; }
   </style>
 </head>
 <body>
-  <!-- 背景音乐：自动播放 + 循环；用“静音起播 + 2 秒淡入”提高自动播放成功率 -->
+  <!-- 背景音乐：静音起播 + 2 秒淡入，提高自动播放成功率 -->
   <audio id="bgm" src="ScreenRecording.m4a" autoplay loop muted preload="auto" playsinline></audio>
 
   <main class="wrap">
@@ -72,7 +94,7 @@
     </div>
 
     <article id="letter">
-      <!-- 原始全文，使用 ⸻ 作为分页标记；JS 会按 ⸻ 自动分页渲染 -->
+      <!-- 使用 ⸻ 作为分页标记；JS 会按 ⸻ 自动分页渲染 -->
       <p>见字如面</p>
 
       <p>我记得你说，萌萌其实是你女儿的名字。</p>
@@ -201,6 +223,9 @@
       <p>她没有问责，她一直感激。</p>
 
       <p class="footer">祝好。<br>我会记得你曾照亮我，而我，也曾照亮过你。</p>
+
+      <!-- 最后一页的照片舞台 -->
+      <div id="photoStage" class="photo-stage"></div>
     </article>
 
     <div class="pagenav">
@@ -215,7 +240,7 @@
   <div class="hint" id="audioHint">🔔 点击开启背景音乐</div>
 
   <script>
-    // —— 音频：自动播放 + 2 秒淡入 —— 
+    /* ===== 背景音乐：自动播放 + 2 秒淡入 ===== */
     const bgm = document.getElementById('bgm');
     const audioBtn = document.getElementById('audioBtn');
     const audioHint = document.getElementById('audioHint');
@@ -225,17 +250,16 @@
       audioBtn.classList.toggle('pulse', !isPlaying);
     }
 
-    // 2 秒音量淡入（从 muted 起播，提升自动播放成功率）
     const FADE_MS = 2000;
     function fadeInAudio(audio, ms = FADE_MS) {
-      audio.volume = 0;
-      audio.muted = true; // 先静音起播
+      audio.volume = 0;       // 从 0 开始
+      audio.muted = true;     // 先静音以通过自动播放策略
       const start = performance.now();
       return audio.play().then(() => {
-        audio.muted = false;
-        function step(now){
+        audio.muted = false;  // 立即解除静音
+        function step(now) {
           const t = Math.min(1, (now - start) / ms);
-          audio.volume = t; // 0 → 1 线性淡入
+          audio.volume = t;   // 0 → 1 线性淡入
           if (t < 1) requestAnimationFrame(step);
         }
         requestAnimationFrame(step);
@@ -248,7 +272,7 @@
         setAudioBtnPlaying(true);
         audioHint.style.display = 'none';
       }catch(err){
-        // 若被浏览器策略拦截（常见于移动端/Safari），提示点击开启
+        // 若被策略拦截（移动端/Safari 常见），提示点击开启
         setAudioBtnPlaying(false);
         audioHint.style.display = 'block';
       }
@@ -258,16 +282,11 @@
       if(bgm.paused){ await tryPlay(); }
       else{ bgm.pause(); setAudioBtnPlaying(false); }
     });
-
     audioHint.addEventListener('click', tryPlay);
-
-    document.addEventListener('visibilitychange', ()=>{
-      if(document.visibilityState === 'visible' && bgm.paused){ tryPlay(); }
-    });
-
+    document.addEventListener('visibilitychange', ()=>{ if(document.visibilityState === 'visible' && bgm.paused){ tryPlay(); }});
     window.addEventListener('DOMContentLoaded', tryPlay);
 
-    // —— 自动分页：以 .sep 作为分隔，生成多页 ——
+    /* ===== 自动分页：以 .sep 作为分隔，生成多页 ===== */
     const article = document.getElementById('letter');
     const allNodes = Array.from(article.children);
     const pages = [[]];
@@ -292,6 +311,19 @@
       nextBtn.textContent = (currentPage===pages.length-1)?'回到开头':'下一页';
       playSequential();
       window.scrollTo({top:0, behavior:'smooth'});
+
+      // —— 只在最后一页、且等文字淡入结束后再启动照片秀 ——
+      if (currentPage === pages.length - 1) {
+        const paras = Array.from(document.querySelectorAll('#letter p'));
+        const styles = getComputedStyle(document.documentElement);
+        const fade = parseInt(styles.getPropertyValue('--fadeDuration')); // 2000
+        const gap  = parseInt(styles.getPropertyValue('--delayStep'));    // 2500
+        const totalMs = (paras.length > 0 ? (paras.length - 1) * gap + fade : 0);
+        if(photosStartTimer) clearTimeout(photosStartTimer);
+        photosStartTimer = setTimeout(()=> startPhotoShowOnce(), totalMs + 200); // 留 200ms 缓冲
+      } else {
+        stopPhotoShow();
+      }
     }
 
     function playSequential(){
@@ -314,6 +346,81 @@
     document.getElementById('prevPage').addEventListener('click', ()=>renderPage(currentPage-1));
     document.getElementById('nextPage').addEventListener('click', ()=>{ if(currentPage===pages.length-1){ renderPage(0); } else { renderPage(currentPage+1); } });
 
+    /* ===== 照片：每张只出现一次 & 文字结束后再开始 ===== */
+    // 把文件放和 index.html 同目录；若放在 photos/ 里，请在文件名前加 'photos/'
+    const PHOTO_SRCS = [
+      '02.jpeg','03.jpeg','04.jpg','05.jpeg','07.jpg','DSC08214.jpeg'
+    ];
+    const PHOTO_GAP = 1200;      // 每隔多久放下一张
+    const PHOTO_LIFETIME = 5200; // 单张从淡入到移除的总时长
+
+    let photoTimeouts = [];
+    let photosStartTimer = null;
+
+    function clearTimers(list){ list.forEach(id=>clearTimeout(id)); list.length = 0; }
+
+    function shuffle(arr){
+      const a = arr.slice();
+      for(let i=a.length-1;i>0;i--){
+        const j = Math.floor(Math.random()*(i+1));
+        [a[i],a[j]] = [a[j],a[i]];
+      }
+      return a;
+    }
+
+    function spawnPhoto(stage, src){
+      const img = new Image();
+      img.src = src;
+      img.className = 'photo';
+
+      img.onload = () => {
+        const maxW = stage.clientWidth;
+        const maxH = stage.clientHeight;
+
+        // 随机尺寸：相对舞台宽度 28%~45%
+        const scale = 0.28 + Math.random()*0.17;
+        const w = Math.max(120, Math.min(maxW*scale, img.naturalWidth));
+        const h = img.naturalHeight * (w / img.naturalWidth);
+        img.style.width = w + 'px';
+
+        // 随机位置与旋转
+        const x = Math.random() * Math.max(1, (maxW - w));
+        const y = Math.random() * Math.max(1, (maxH - h));
+        const rot = (Math.random()*24 - 12).toFixed(1);
+        img.style.transform = `translate(${x}px, ${y}px) rotate(${rot}deg)`;
+        img.style.zIndex = String(100 + Math.floor(Math.random()*200));
+
+        stage.appendChild(img);
+
+        // 淡入 → 淡出 → 移除
+        requestAnimationFrame(()=> img.classList.add('in'));
+        photoTimeouts.push(setTimeout(()=> img.classList.add('out'), PHOTO_LIFETIME - 1300));
+        photoTimeouts.push(setTimeout(()=> { if (img.parentNode) stage.removeChild(img); }, PHOTO_LIFETIME));
+      };
+
+      img.onerror = () => console.warn('图片加载失败：', src);
+    }
+
+    function startPhotoShowOnce(){
+      const stage = document.getElementById('photoStage');
+      if(!stage) return;
+      stopPhotoShow();
+      stage.innerHTML = '';
+
+      const queue = shuffle(PHOTO_SRCS); // 乱序，仅一轮
+      queue.forEach((src, i)=>{
+        photoTimeouts.push(setTimeout(()=> spawnPhoto(stage, src), i * PHOTO_GAP));
+      });
+    }
+
+    function stopPhotoShow(){
+      if(photosStartTimer){ clearTimeout(photosStartTimer); photosStartTimer = null; }
+      clearTimers(photoTimeouts);
+      const stage = document.getElementById('photoStage');
+      if(stage) stage.innerHTML = '';
+    }
+
+    // 初始渲染第一页
     renderPage(0);
   </script>
 </body>
