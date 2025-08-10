@@ -58,8 +58,8 @@
   </style>
 </head>
 <body>
-  <!-- 背景音乐（自动播放+循环）。若被拦截，代码会提示点击开启。 -->
-  <audio id="bgm" src="ScreenRecording.m4a" autoplay loop preload="auto" playsinline></audio>
+  <!-- 背景音乐：自动播放 + 循环；用“静音起播 + 2 秒淡入”提高自动播放成功率 -->
+  <audio id="bgm" src="ScreenRecording.m4a" autoplay loop muted preload="auto" playsinline></audio>
 
   <main class="wrap">
     <button class="btn audio-toggle" id="audioBtn">🔊 正在播放</button>
@@ -215,7 +215,7 @@
   <div class="hint" id="audioHint">🔔 点击开启背景音乐</div>
 
   <script>
-    // —— 音频自动播放与拦截处理 ——
+    // —— 音频：自动播放 + 2 秒淡入 —— 
     const bgm = document.getElementById('bgm');
     const audioBtn = document.getElementById('audioBtn');
     const audioHint = document.getElementById('audioHint');
@@ -225,13 +225,30 @@
       audioBtn.classList.toggle('pulse', !isPlaying);
     }
 
+    // 2 秒音量淡入（从 muted 起播，提升自动播放成功率）
+    const FADE_MS = 2000;
+    function fadeInAudio(audio, ms = FADE_MS) {
+      audio.volume = 0;
+      audio.muted = true; // 先静音起播
+      const start = performance.now();
+      return audio.play().then(() => {
+        audio.muted = false;
+        function step(now){
+          const t = Math.min(1, (now - start) / ms);
+          audio.volume = t; // 0 → 1 线性淡入
+          if (t < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      });
+    }
+
     async function tryPlay(){
       try{
-        await bgm.play();
+        await fadeInAudio(bgm, FADE_MS);
         setAudioBtnPlaying(true);
         audioHint.style.display = 'none';
       }catch(err){
-        // 被浏览器策略拦截
+        // 若被浏览器策略拦截（常见于移动端/Safari），提示点击开启
         setAudioBtnPlaying(false);
         audioHint.style.display = 'block';
       }
