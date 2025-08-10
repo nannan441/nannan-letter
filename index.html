@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>To：宇宙最爱粉丝的小萌主</title>
+  <style>
+    :root{
+      --bg:#f5ebdc;
+      --text:#1e1e1e;
+      --card:#ffffffd9;
+      --accent:#6b5b53;
+      /* 放慢节奏：2s 淡入 + 2.5s 间隔 */
+      --fadeDuration: 2000ms;
+      --delayStep: 2500ms;
+    }
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:var(--bg) url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+      color:var(--text);
+      font-family: "FangSong", "STFangSong", "Noto Serif SC", "Songti SC", "PingFang SC", serif;
+      display:grid;
+      place-items:center;
+    }
+    .wrap{
+      width:min(820px, 92vw);
+      background:var(--card);
+      backdrop-filter: blur(2px);
+      border-radius:24px;
+      box-shadow:0 10px 30px rgba(0,0,0,.08);
+      padding:36px 28px 28px;
+      line-height:1.9;
+      position:relative;
+    }
+    h1{
+      margin:0 0 8px;
+      font-size:28px;
+      text-align:center;
+      letter-spacing:.06em;
+      color:var(--accent);
+    }
+    p{ margin:14px 0; font-size:18px; opacity:0; transform: translateY(8px); transition: opacity var(--fadeDuration) ease, transform var(--fadeDuration) ease; }
+    p.show{opacity:1; transform:none}
+    .sep{ text-align:center; letter-spacing:.3em; color:#8a7f78; margin:18px 0; }
+    .footer{margin-top:18px; text-align:right; color:#6f655f}
+    .controls{display:flex; gap:8px; justify-content:center; margin:12px 0 8px}
+    .btn{ border:1px solid #d7cfc8; background:#fff; color:#5b534e; padding:8px 12px; border-radius:999px; cursor:pointer; font-size:14px; }
+    .btn:hover{background:#f7f2ee}
+    .pagenav{display:flex; justify-content:center; gap:10px; margin-top:10px}
+    .page-footer{ position:absolute; bottom:8px; right:16px; font-size:12px; color:#9a8f88; }
+    .page-date{ position:absolute; bottom:8px; left:16px; font-size:12px; color:#9a8f88; }
+    /* 右上角音乐按钮与提示 */
+    .audio-toggle{ position:absolute; top:10px; right:12px; z-index:5; }
+    .hint{ position:fixed; left:50%; bottom:24px; transform:translateX(-50%); background:#fff; color:#5b534e; border:1px solid #d7cfc8; padding:10px 14px; border-radius:999px; box-shadow:0 6px 18px rgba(0,0,0,.08); display:none; }
+    .pulse{ animation:pulse 1.4s ease-in-out infinite; }
+    @keyframes pulse{ 0%{box-shadow:0 0 0 0 rgba(107,91,83,.35)} 70%{box-shadow:0 0 0 14px rgba(107,91,83,0)} 100%{box-shadow:0 0 0 0 rgba(107,91,83,0)} }
+  </style>
+</head>
+<body>
+  <!-- 背景音乐（自动播放+循环）。若被拦截，代码会提示点击开启。 -->
+  <audio id="bgm" src="ScreenRecording.m4a" autoplay loop preload="auto" playsinline></audio>
+
+  <main class="wrap">
+    <button class="btn audio-toggle" id="audioBtn">🔊 正在播放</button>
+
+    <h1>To：宇宙最爱粉丝的小萌主</h1>
+
+    <div class="controls">
+      <button class="btn" id="play">开始淡入</button>
+      <button class="btn" id="reset">重置</button>
+    </div>
+
+    <article id="letter">
+      <!-- 原始全文，使用 ⸻ 作为分页标记；JS 会按 ⸻ 自动分页渲染 -->
+      <p>见字如面</p>
+
+      <p>我记得你说，萌萌其实是你女儿的名字。</p>
+      <p>想来，我还不知道你真正的小名是什么，不知道该用什么样的称呼做开头。</p>
+
+      <p>“萌主”，是大家群里对你的玩笑与称呼；</p>
+      <p>“哥”，好像是花生私下对你的称呼；</p>
+      <p>于我，却是怎样都叫不出口的。</p>
+
+      <p>楠楠，是我的真实小名，是我名字的一部分。</p>
+      <p>你的呢？</p>
+      <p>“95年以降生まれですけど、あなたは？”</p>
+
+      <p class="sep">⸻</p>
+
+      <p>你问我：“你在纠结，没打西施，代打了，是么。”</p>
+      <p>是，也不是。</p>
+
+      <p>我有多爱西施，以至于非要看你打不可呢？</p>
+      <p>我有多在意你接单、代打呢？这些本来就是你作为一个主播正常的业务范围。</p>
+
+      <p>我在纠结什么，害怕什么呢？</p>
+      <p>我好害怕我想听到的那个答案——而今天，我听到了。</p>
+
+      <p>你说：“你们超助随意。”</p>
+      <p>我很庆幸，我还在这个“你们”之中。</p>
+
+      <p>你说：“你问问小鹿、花生，早就说了。”</p>
+      <p>我又觉得自己是这超助特权之外的生物，好像你们很多关键的决策，我都错过了，也不了解。</p>
+
+      <p>你说：“你只看到表面的，直播间为什么改变了，有原因的。”</p>
+      <p>我责备自己的蠢笨，未曾洞察在你直播间默默发生过的一切改变。</p>
+
+      <p>你说：“花生是看我最近玩的号打不好，她才这样的。”</p>
+      <p>“这事还用说的这么直接么？”</p>
+      <p>“……理解了么？”</p>
+      <p>“是她在帮助我。”</p>
+
+      <p>可以不加掩饰地说，这短短的几句话对我来说，是醍醐灌顶，是自惭形秽。</p>
+      <p>它刺痛我，因为这才是我真正害怕面对的东西——不是什么西施，也不是什么代打。</p>
+      <p>如你所说，其实不用这么直接，我心里应该知道。</p>
+
+      <p>它让我痛彻心扉，因为它的开头并不是任何一个人的错，而单单是一个事实。</p>
+      <p>它让我泪流不止，因为虽然刺痛我，但它是真心。</p>
+
+      <p class="sep">⸻</p>
+
+      <p>我很羡慕自己没能成为她——第一时间洞察直播间里的你的状态，不能及时送上你最需要的东西。</p>
+
+      <p>曾经，我也努力过：</p>
+      <p>努力做你直播间里第一个到达的人，因为你说看到我们一个个到来，你会安心。</p>
+      <p>努力帮你音译看不懂的每一个英文歌名，根据你的发音习惯让你尽量轻松些。</p>
+
+      <p>但是我的手速不够快，不够快到成为你第一时间的依赖。</p>
+      <p>在你连败、情绪不好时，不会第一时间说出你想听的话，或像花生那样给到你改变状态的帮助。</p>
+
+      <p>在你直播间里每一个让你开心的瞬间，我也会截屏保存，</p>
+      <p>虽然我知道，已经有人先我一步做好，编成视频交给你。</p>
+
+      <p>可以不加掩饰地说，我很羡慕，也很嫉妒。</p>
+      <p>在我这里，嫉妒并不是贬义词，它只是当你会在意一个人时自然产生的情感。</p>
+      <p>就如同会哭、会笑、会悲伤、会喜悦一样自然。</p>
+
+      <p class="sep">⸻</p>
+
+      <p>你可能会问，它为什么存在，为什么会让我痛苦？</p>
+      <p>我也说不清。</p>
+
+      <p>或许因为，我们第一次聊天的时候，你说觉得我一个人在国外，应该多关心我；</p>
+      <p>或许因为，我的论文发表了、我社恐得害怕上台讲话的时候，你说：“楠楠，你是最棒的”；</p>
+      <p>或许因为，我说“这个直播间就像一个音乐时光机，主播就像守护他的老头，连接了我们的过去、现在和未来”，你说觉得自己被治愈了，那一刻我觉得自己有被你需要；</p>
+      <p>或许因为，你陪我聊天到后半夜，轻声问：“楠楠，你还有哪些地方不满呢”，而我的内心像是刚要坠落至黑夜，然后悄悄被你的耐心与包容接住；</p>
+      <p>又或许因为，你说“等到宴席散了的时候，不要目送我们，要第一个离开”，而我内心偷笑——守护我们过去现在和未来的老头，也害怕目送么。</p>
+
+      <p>没关系，因为我想我可以等到最后，目送你。</p>
+
+      <p class="sep">⸻</p>
+
+      <p>人在面对自己稀缺的情感时，才会梦想它是特别的、独一无二的。</p>
+      <p>有这样的梦想，便会有奢望；有奢望，就容易存疑——因为她总想反复确认那个答案。</p>
+
+      <p>虽然我不觉得这有什么羞耻，因为我亦有真心，我的喜爱同样拿得出手。</p>
+
+      <p>但当你告诉我：“这事还用说的这么直接么”“……理解了么”“是她在帮助我”，</p>
+      <p>它们就像雷雨后的雨点敲击着窗，在拷问着我：</p>
+      <p>“这事还用说的这么直接么？”</p>
+      <p>“……你做得到么？”</p>
+      <p>“……你还有什么资格刨根问底？”</p>
+
+      <p>当你渴望成为对方对等的那份需要和特权时，对方回答：</p>
+      <p>直播间里，怕不好，本来就是规定好的，你为什么轻易就觉得自己可以“随意”？</p>
+
+      <p>真正的答案是：那里已经有人了。</p>
+
+      <p class="sep">⸻</p>
+
+      <p>是啊，我什么也不知道，什么也不了解，只是用自己的存疑让你熬夜到后半夜，一直追问而已。</p>
+      <p>我心中似乎也有了答案——本来就是拿不出手的，有什么资格去比较呢。</p>
+
+      <p>但是，我的心里就是忍不住会为此难过；</p>
+      <p>我的眼睛会为此一直流泪，没有办法停止。</p>
+
+      <p>您告诉我，我应该怎么办才好呢？</p>
+      <p>这不是对您的指责，是我的真心话，也是我的求助。</p>
+
+      <p>我没能做到成为真正交心、知晓你需求、适时给予你宽慰与帮助的人，</p>
+      <p>虽然我多么期望自己能做到，但已经有人替我做到了。</p>
+
+      <p>我应该为你高兴，至少你走了出来，找到了最好的状态。</p>
+      <p>但这也是我最害怕面对的东西——是我从始至终真正追问的事，追问你，也追问我自己。</p>
+
+      <p>所以我会失控，会不停地折磨自己，也消耗着你。</p>
+
+      <p class="sep">⸻</p>
+
+      <p>“这事能过去了么？”</p>
+      <p>或许可以。没有什么事情再需要停留。</p>
+      <p>或许我一开始幻想的那个特别的位置和空间，都只是我停留在自我世界的想象。</p>
+
+      <p>这份想象，虽然不是百分百的虚妄，我想它存有弥足珍贵的记忆，能让我走到毕业前。</p>
+
+      <p>“你想让我怎么样呢？”</p>
+      <p>希望您一直有好的状态，再不要遇到像我这样问题重重的粉丝。</p>
+
+      <p>请您相信，你做得很好。</p>
+      <p>她没有问责，她一直感激。</p>
+
+      <p class="footer">祝好。<br>我会记得你曾照亮我，而我，也曾照亮过你。</p>
+    </article>
+
+    <div class="pagenav">
+      <button class="btn" id="prevPage">上一页</button>
+      <button class="btn" id="nextPage">下一页</button>
+    </div>
+
+    <div class="page-footer" id="pageNum">第 1 页</div>
+    <div class="page-date">2025-08-10</div>
+  </main>
+
+  <div class="hint" id="audioHint">🔔 点击开启背景音乐</div>
+
+  <script>
+    // —— 音频自动播放与拦截处理 ——
+    const bgm = document.getElementById('bgm');
+    const audioBtn = document.getElementById('audioBtn');
+    const audioHint = document.getElementById('audioHint');
+
+    function setAudioBtnPlaying(isPlaying){
+      audioBtn.textContent = isPlaying ? '🔊 正在播放' : '🔇 已暂停';
+      audioBtn.classList.toggle('pulse', !isPlaying);
+    }
+
+    async function tryPlay(){
+      try{
+        await bgm.play();
+        setAudioBtnPlaying(true);
+        audioHint.style.display = 'none';
+      }catch(err){
+        // 被浏览器策略拦截
+        setAudioBtnPlaying(false);
+        audioHint.style.display = 'block';
+      }
+    }
+
+    audioBtn.addEventListener('click', async ()=>{
+      if(bgm.paused){ await tryPlay(); }
+      else{ bgm.pause(); setAudioBtnPlaying(false); }
+    });
+
+    audioHint.addEventListener('click', tryPlay);
+
+    document.addEventListener('visibilitychange', ()=>{
+      if(document.visibilityState === 'visible' && bgm.paused){ tryPlay(); }
+    });
+
+    window.addEventListener('DOMContentLoaded', tryPlay);
+
+    // —— 自动分页：以 .sep 作为分隔，生成多页 ——
+    const article = document.getElementById('letter');
+    const allNodes = Array.from(article.children);
+    const pages = [[]];
+
+    allNodes.forEach(node=>{
+      if(node.classList && node.classList.contains('sep')){ pages.push([]); }
+      else{ pages[pages.length-1].push(node); }
+    });
+
+    let currentPage = 0;
+    function renderPage(idx){
+      currentPage = Math.max(0, Math.min(idx, pages.length-1));
+      article.innerHTML = '';
+      pages[currentPage].forEach(n=>{
+        const clone = n.cloneNode(true);
+        clone.classList.remove('show');
+        article.appendChild(clone);
+      });
+      document.getElementById('pageNum').textContent = `第 ${currentPage+1} 页 / 共 ${pages.length} 页`;
+      document.getElementById('prevPage').style.display = (currentPage===0)?'none':'inline-flex';
+      const nextBtn = document.getElementById('nextPage');
+      nextBtn.textContent = (currentPage===pages.length-1)?'回到开头':'下一页';
+      playSequential();
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+
+    function playSequential(){
+      const paras = Array.from(document.querySelectorAll('#letter p'));
+      paras.forEach((p,i)=>{
+        p.classList.remove('show');
+        const delay = i * parseInt(getComputedStyle(document.documentElement).getPropertyValue('--delayStep'));
+        setTimeout(()=>p.classList.add('show'), delay);
+      });
+    }
+
+    function resetAll(){
+      const paras = Array.from(document.querySelectorAll('#letter p'));
+      paras.forEach(p=>p.classList.remove('show'));
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+
+    document.getElementById('play').addEventListener('click', playSequential);
+    document.getElementById('reset').addEventListener('click', resetAll);
+    document.getElementById('prevPage').addEventListener('click', ()=>renderPage(currentPage-1));
+    document.getElementById('nextPage').addEventListener('click', ()=>{ if(currentPage===pages.length-1){ renderPage(0); } else { renderPage(currentPage+1); } });
+
+    renderPage(0);
+  </script>
+</body>
+</html>
