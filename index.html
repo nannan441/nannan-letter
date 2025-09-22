@@ -3,14 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>To：宇宙最爱粉丝的小萌主</title>
+  <title>To：最后的信</title>
   <style>
     :root{
       --bg:#f5ebdc;
       --text:#1e1e1e;
       --card:#ffffffd9;
       --accent:#6b5b53;
-      /* 放慢节奏：2s 段落淡入 + 2.5s 段间隔 */
       --fadeDuration: 2000ms;
       --delayStep: 2500ms;
     }
@@ -42,7 +41,6 @@
     }
     p{ margin:14px 0; font-size:18px; opacity:0; transform: translateY(8px); transition: opacity var(--fadeDuration) ease, transform var(--fadeDuration) ease; }
     p.show{opacity:1; transform:none}
-    .sep{ text-align:center; letter-spacing:.3em; color:#8a7f78; margin:18px 0; }
     .footer{margin-top:18px; text-align:right; color:#6f655f}
     .controls{display:flex; gap:8px; justify-content:center; margin:12px 0 8px}
     .btn{ border:1px solid #d7cfc8; background:#fff; color:#5b534e; padding:8px 12px; border-radius:999px; cursor:pointer; font-size:14px; }
@@ -50,43 +48,18 @@
     .pagenav{display:flex; justify-content:center; gap:10px; margin-top:10px}
     .page-footer{ position:absolute; bottom:8px; right:16px; font-size:12px; color:#9a8f88; }
     .page-date{ position:absolute; bottom:8px; left:16px; font-size:12px; color:#9a8f88; }
-    /* 右上角音乐按钮与提示 */
     .audio-toggle{ position:absolute; top:10px; right:12px; z-index:5; }
     .hint{ position:fixed; left:50%; bottom:24px; transform:translateX(-50%); background:#fff; color:#5b534e; border:1px solid #d7cfc8; padding:10px 14px; border-radius:999px; box-shadow:0 6px 18px rgba(0,0,0,.08); display:none; }
     .pulse{ animation:pulse 1.4s ease-in-out infinite; }
     @keyframes pulse{ 0%{box-shadow:0 0 0 0 rgba(107,91,83,.35)} 70%{box-shadow:0 0 0 14px rgba(107,91,83,0)} 100%{box-shadow:0 0 0 0 rgba(107,91,83,0)} }
-
-    /* --- 最后一页照片舞台 --- */
-    .photo-stage{
-      position: relative;
-      height: 360px;          /* 想更高就调这里 */
-      margin-top: 14px;
-      overflow: hidden;
-      border-radius: 16px;
-      background: #ffffffb8;  /* 想纯透明可删 */
-      backdrop-filter: blur(2px);
-    }
-    .photo{
-      position: absolute;
-      top: 0; left: 0;
-      opacity: 0;
-      border-radius: 12px;
-      box-shadow: 0 10px 26px rgba(0,0,0,.12);
-      transition: opacity 900ms ease;
-      will-change: transform, opacity;
-    }
-    .photo.in{ opacity: 1; }
-    .photo.out{ opacity: 0; }
   </style>
 </head>
 <body>
-  <!-- 背景音乐：静音起播 + 2 秒淡入，提高自动播放成功率 -->
   <audio id="bgm" src="ScreenRecording.m4a" autoplay loop muted preload="auto" playsinline></audio>
 
   <main class="wrap">
     <button class="btn audio-toggle" id="audioBtn">🔊 正在播放</button>
-
-    <h1>To：宇宙最爱粉丝的小萌主</h1>
+    <h1>To：最后的信</h1>
 
     <div class="controls">
       <button class="btn" id="play">开始淡入</button>
@@ -94,138 +67,120 @@
     </div>
 
     <article id="letter">
-      <!-- 使用 ⸻ 作为分页标记；JS 会按 ⸻ 自动分页渲染 -->
-      <p>见字如面</p>
+      <p>或许你还没有醒</p>
+      <p>我想了很久还是决定把这最后一封信写给你</p>
+      <p>如果说这几天你把对我的沉默和冷淡</p>
+      <p>视作你最后的倔强和名为尊严的战场</p>
+      <p>你已经赢下这场战役</p>
 
-      <p>我记得你说，萌萌其实是你女儿的名字。</p>
-      <p>想来，我还不知道你真正的小名是什么，不知道该用什么样的称呼做开头。</p>
+      <p>这些天我一直在等你的信息</p>
+      <p>我不停的告诉你自己</p>
+      <p>你不是那样冷漠的人</p>
+      <p>你和曾经那些冷暴力我的朋友不一样</p>
 
-      <p>“萌主”，是大家群里对你的玩笑与称呼；</p>
-      <p>“哥”，好像是花生私下对你的称呼；</p>
-      <p>于我，却是怎样都叫不出口的。</p>
+      <p>因为等不到你</p>
+      <p>昨晚鼓起勇气走到你的直播间</p>
 
-      <p>楠楠，是我的真实小名，是我名字的一部分。</p>
-      <p>你的呢？</p>
-      <p>“95年以降生まれですけど、あなたは？”</p>
+      <p>你知道我还在生病</p>
+      <p>却漠不关心</p>
+      <p>以及在直播间视我的留言为空气</p>
+      <p>已经给了我再清楚不过的答案</p>
 
-      <p class="sep">⸻</p>
+      <p>你的直播间不再需要我</p>
+      <p>你的内心也不再需要我的支持</p>
+      <p>你的冷漠和视我为透明</p>
+      <p>和那些曾经霸凌过我，冷暴力我的人没什么两样</p>
 
-      <p>你问我：“你在纠结，没打西施，代打了，是么。”</p>
-      <p>是，也不是。</p>
+      <p>我终究失去了那个曾经的你</p>
+      <p>那个说过要陪我走到毕业的你</p>
+      <p>说我到了沈阳时，要告诉我旅行攻略的</p>
+      <p>说担心我在职场上会受到欺负的</p>
+      <p>说相信我是最棒的</p>
+      <p>告诉我上台不用害怕的你</p>
+      <p>那个轻声为我唱起月光</p>
+      <p>那个曾陪我聊到天亮的</p>
+      <p>那个真诚的 我最最信任的</p>
+      <p>可以推心置腹的你</p>
 
-      <p>我有多爱西施，以至于非要看你打不可呢？</p>
-      <p>我有多在意你接单、代打呢？这些本来就是你作为一个主播正常的业务范围。</p>
+      <p>那天，你在直播间说要唱一首为你写诗</p>
+      <p>因为是花生和鹿鹿的小红书百天</p>
+      <p>你知道么，我飞往布拉格的那一天</p>
+      <p>9月1日</p>
+      <p>也是我们的小红书百天</p>
+      <p>在我去往布拉格的时候</p>
+      <p>精神恍惚 差一点丢掉钱包和护照</p>
+      <p>在多哈转机的那一夜</p>
+      <p>被随机分到了偏僻的小旅馆</p>
+      <p>我很害怕 害怕到哭</p>
+      <p>那时候也在等你的信息</p>
+      <p>耳边想起的是你的声音和月光</p>
+      <p>想打语音给你</p>
+      <p>想听到你告诉我不要怕</p>
 
-      <p>我在纠结什么，害怕什么呢？</p>
-      <p>我好害怕我想听到的那个答案——而今天，我听到了。</p>
+      <p>我知道前些日子你的生活也经历了一些变动</p>
+      <p>我听得到你在直播间的声音</p>
+      <p>也听得到你的疲惫 你的不快乐 你的强颜欢笑</p>
+      <p>尽管我曾尝试着想和你聊聊 替你分解心中的烦恼</p>
+      <p>想告诉你，</p>
+      <p>如果累了 就休息几天吧</p>
+      <p>想把我拍到的，没有许愿池的布拉格广场</p>
+      <p>和周杰伦MV的取景地布拉格堡，分享给你</p>
+      <p>想告诉你，在布拉格的第一天晚上，</p>
+      <p>因为喝了伏特加酒，我身体过敏</p>
+      <p>满大街找药店买药的滑稽事</p>
+      <p>想告诉你，我其实给你准备了纪念品，你的，还有鹿鹿的</p>
+      <p>还有那张海报，围绕他发生的搞笑故事</p>
+      <p>但你关上了那扇门 不愿意对我敞开心扉</p>
+      <p>现在，我想你其实并不需要</p>
 
-      <p>你说：“你们超助随意。”</p>
-      <p>我很庆幸，我还在这个“你们”之中。</p>
+      <p>或许前些日子和你断交让你内心也受到了伤害</p>
+      <p>或许那段时间你也是需要我的</p>
+      <p>不过没关系</p>
+      <p>你没有和我说过断交 也没有取关</p>
+      <p>但你这些天对我的冷处理已经达到了同样的效果</p>
 
-      <p>你说：“你问问小鹿、花生，早就说了。”</p>
-      <p>我又觉得自己是这超助特权之外的生物，好像你们很多关键的决策，我都错过了，也不了解。</p>
+      <p>昨夜，</p>
+      <p>我迷迷糊糊的回到了五月初的某个夏夜</p>
+      <p>梦里在和你，鹿鹿，oio 还有几个现在不常来的朋友一起峡谷组局</p>
+      <p>梦里听见你对我说上号，</p>
+      <p>“不是从小红书上，是在王者房间号”</p>
+      <p>然后我笑着笑着醒了</p>
+      <p>醒着醒着哭了</p>
 
-      <p>你说：“你只看到表面的，直播间为什么改变了，有原因的。”</p>
-      <p>我责备自己的蠢笨，未曾洞察在你直播间默默发生过的一切改变。</p>
+      <p>还有六月里的某个晚上</p>
+      <p>播了好多首老歌</p>
+      <p>都是大家听过的</p>
+      <p>梦里，我好像听到了那首&lt;偏爱&gt;</p>
+      <p>我说，</p>
+      <p>“这个直播间就像是时光机 主播是掌管这个时光机器的老头”</p>
+      <p>日后每次你说自己是老头</p>
+      <p>我总以为可以回到那时的人和事</p>
 
-      <p>你说：“花生是看我最近玩的号打不好，她才这样的。”</p>
-      <p>“这事还用说的这么直接么？”</p>
-      <p>“……理解了么？”</p>
-      <p>“是她在帮助我。”</p>
+      <p>但是我忘了</p>
+      <p>世界上根本没有时光机这回事</p>
+      <p>那个直播间</p>
+      <p>曾经我快乐的源泉</p>
+      <p>已经回不去</p>
 
-      <p>可以不加掩饰地说，这短短的几句话对我来说，是醍醐灌顶，是自惭形秽。</p>
-      <p>它刺痛我，因为这才是我真正害怕面对的东西——不是什么西施，也不是什么代打。</p>
-      <p>如你所说，其实不用这么直接，我心里应该知道。</p>
+      <p>这并不是我第一次给你写信</p>
+      <p>但我想 一定是最后一次了吧</p>
+      <p>至少我可以说，</p>
+      <p>我对你</p>
+      <p>至始至终，都坦诚相对</p>
 
-      <p>它让我痛彻心扉，因为它的开头并不是任何一个人的错，而单单是一个事实。</p>
-      <p>它让我泪流不止，因为虽然刺痛我，但它是真心。</p>
+      <p>我将会体面的离开</p>
+      <p>不会留下任何遗憾和痕迹</p>
 
-      <p class="sep">⸻</p>
+      <p>或许将来</p>
+      <p>你还可以对别人说</p>
+      <p>是我自己选择的</p>
+      <p>没错</p>
+      <p>离开你和你的直播间</p>
+      <p>于我，是你想象不到的沉重与痛苦的选择</p>
+      <p>但是你促成了我的选择</p>
 
-      <p>我很羡慕自己没能成为她——第一时间洞察直播间里的你的状态，不能及时送上你最需要的东西。</p>
-
-      <p>曾经，我也努力过：</p>
-      <p>努力做你直播间里第一个到达的人，因为你说看到我们一个个到来，你会安心。</p>
-      <p>努力帮你音译看不懂的每一个英文歌名，根据你的发音习惯让你尽量轻松些。</p>
-
-      <p>但是我的手速不够快，不够快到成为你第一时间的依赖。</p>
-      <p>在你连败、情绪不好时，不会第一时间说出你想听的话，或像花生那样给到你改变状态的帮助。</p>
-
-      <p>在你直播间里每一个让你开心的瞬间，我也会截屏保存，</p>
-      <p>虽然我知道，已经有人先我一步做好，编成视频交给你。</p>
-
-      <p>可以不加掩饰地说，我很羡慕，也很嫉妒。</p>
-      <p>在我这里，嫉妒并不是贬义词，它只是当你会在意一个人时自然产生的情感。</p>
-      <p>就如同会哭、会笑、会悲伤、会喜悦一样自然。</p>
-
-      <p class="sep">⸻</p>
-
-      <p>你可能会问，它为什么存在，为什么会让我痛苦？</p>
-      <p>我也说不清。</p>
-
-      <p>或许因为，我们第一次聊天的时候，你说觉得我一个人在国外，应该多关心我；</p>
-      <p>或许因为，我的论文发表了、我社恐得害怕上台讲话的时候，你说：“楠楠，你是最棒的”；</p>
-      <p>或许因为，我说“这个直播间就像一个音乐时光机，主播就像守护他的老头，连接了我们的过去、现在和未来”，你说觉得自己被治愈了，那一刻我觉得自己有被你需要；</p>
-      <p>或许因为，你陪我聊天到后半夜，轻声问：“楠楠，你还有哪些地方不满呢”，而我的内心像是刚要坠落至黑夜，然后悄悄被你的耐心与包容接住；</p>
-      <p>又或许因为，你说“等到宴席散了的时候，不要目送我们，要第一个离开”，而我内心偷笑——守护我们过去现在和未来的老头，也害怕目送么。</p>
-
-      <p>没关系，因为我想我可以等到最后，目送你。</p>
-
-      <p class="sep">⸻</p>
-
-      <p>人在面对自己稀缺的情感时，才会梦想它是特别的、独一无二的。</p>
-      <p>有这样的梦想，便会有奢望；有奢望，就容易存疑——因为她总想反复确认那个答案。</p>
-
-      <p>虽然我不觉得这有什么羞耻，因为我亦有真心，我的喜爱同样拿得出手。</p>
-
-      <p>但当你告诉我：“这事还用说的这么直接么”“……理解了么”“是她在帮助我”，</p>
-      <p>它们就像雷雨后的雨点敲击着窗，在拷问着我：</p>
-      <p>“这事还用说的这么直接么？”</p>
-      <p>“……你做得到么？”</p>
-      <p>“……你还有什么资格刨根问底？”</p>
-
-      <p>当你渴望成为对方对等的那份需要和特权时，对方回答：</p>
-      <p>直播间里，怕不好，本来就是规定好的，你为什么轻易就觉得自己可以“随意”？</p>
-
-      <p>真正的答案是：那里已经有人了。</p>
-
-      <p class="sep">⸻</p>
-
-      <p>是啊，我什么也不知道，什么也不了解，只是用自己的存疑让你熬夜到后半夜，一直追问而已。</p>
-      <p>我心中似乎也有了答案——本来就是拿不出手的，有什么资格去比较呢。</p>
-
-      <p>但是，我的心里就是忍不住会为此难过；</p>
-      <p>我的眼睛会为此一直流泪，没有办法停止。</p>
-
-      <p>您告诉我，我应该怎么办才好呢？</p>
-      <p>这不是对您的指责，是我的真心话，也是我的求助。</p>
-
-      <p>我没能做到成为真正交心、知晓你需求、适时给予你宽慰与帮助的人，</p>
-      <p>虽然我多么期望自己能做到，但已经有人替我做到了。</p>
-
-      <p>我应该为你高兴，至少你走了出来，找到了最好的状态。</p>
-      <p>但这也是我最害怕面对的东西——是我从始至终真正追问的事，追问你，也追问我自己。</p>
-
-      <p>所以我会失控，会不停地折磨自己，也消耗着你。</p>
-
-      <p class="sep">⸻</p>
-
-      <p>“这事能过去了么？”</p>
-      <p>或许可以。没有什么事情再需要停留。</p>
-      <p>或许我一开始幻想的那个特别的位置和空间，都只是我停留在自我世界的想象。</p>
-
-      <p>这份想象，虽然不是百分百的虚妄，我想它存有弥足珍贵的记忆，能让我走到毕业前。</p>
-
-      <p>“你想让我怎么样呢？”</p>
-      <p>希望您一直有好的状态，再不要遇到像我这样问题重重的粉丝。</p>
-
-      <p>请您相信，你做得很好。</p>
-      <p>她没有问责，她一直感激。</p>
-
-      <p class="footer">祝好。<br>我会记得你曾照亮我，愿我，也曾照亮过你。</p>
-
-      <!-- 最后一页的照片舞台 -->
-      <div id="photoStage" class="photo-stage"></div>
+      <p>若是你心愿</p>
+      <p>已遂，祝好</p>
     </article>
 
     <div class="pagenav">
@@ -236,11 +191,9 @@
     <div class="page-footer" id="pageNum">第 1 页</div>
     <div class="page-date">2025-08-10</div>
   </main>
-
   <div class="hint" id="audioHint">🔔 点击开启背景音乐</div>
 
   <script>
-    /* ===== 背景音乐：自动播放 + 2 秒淡入 ===== */
     const bgm = document.getElementById('bgm');
     const audioBtn = document.getElementById('audioBtn');
     const audioHint = document.getElementById('audioHint');
@@ -249,53 +202,45 @@
       audioBtn.textContent = isPlaying ? '🔊 正在播放' : '🔇 已暂停';
       audioBtn.classList.toggle('pulse', !isPlaying);
     }
-
     const FADE_MS = 2000;
     function fadeInAudio(audio, ms = FADE_MS) {
-      audio.volume = 0;       // 从 0 开始
-      audio.muted = true;     // 先静音以通过自动播放策略
+      audio.volume = 0;
+      audio.muted = true;
       const start = performance.now();
       return audio.play().then(() => {
-        audio.muted = false;  // 立即解除静音
+        audio.muted = false;
         function step(now) {
           const t = Math.min(1, (now - start) / ms);
-          audio.volume = t;   // 0 → 1 线性淡入
+          audio.volume = t;
           if (t < 1) requestAnimationFrame(step);
         }
         requestAnimationFrame(step);
       });
     }
-
     async function tryPlay(){
       try{
         await fadeInAudio(bgm, FADE_MS);
         setAudioBtnPlaying(true);
         audioHint.style.display = 'none';
       }catch(err){
-        // 若被策略拦截（移动端/Safari 常见），提示点击开启
         setAudioBtnPlaying(false);
         audioHint.style.display = 'block';
       }
     }
-
     audioBtn.addEventListener('click', async ()=>{
       if(bgm.paused){ await tryPlay(); }
       else{ bgm.pause(); setAudioBtnPlaying(false); }
     });
     audioHint.addEventListener('click', tryPlay);
-    document.addEventListener('visibilitychange', ()=>{ if(document.visibilityState === 'visible' && bgm.paused){ tryPlay(); }});
     window.addEventListener('DOMContentLoaded', tryPlay);
 
-    /* ===== 自动分页：以 .sep 作为分隔，生成多页 ===== */
     const article = document.getElementById('letter');
     const allNodes = Array.from(article.children);
     const pages = [[]];
-
     allNodes.forEach(node=>{
       if(node.classList && node.classList.contains('sep')){ pages.push([]); }
       else{ pages[pages.length-1].push(node); }
     });
-
     let currentPage = 0;
     function renderPage(idx){
       currentPage = Math.max(0, Math.min(idx, pages.length-1));
@@ -311,21 +256,7 @@
       nextBtn.textContent = (currentPage===pages.length-1)?'回到开头':'下一页';
       playSequential();
       window.scrollTo({top:0, behavior:'smooth'});
-
-      // —— 只在最后一页、且等文字淡入结束后再启动照片秀 ——
-      if (currentPage === pages.length - 1) {
-        const paras = Array.from(document.querySelectorAll('#letter p'));
-        const styles = getComputedStyle(document.documentElement);
-        const fade = parseInt(styles.getPropertyValue('--fadeDuration')); // 2000
-        const gap  = parseInt(styles.getPropertyValue('--delayStep'));    // 2500
-        const totalMs = (paras.length > 0 ? (paras.length - 1) * gap + fade : 0);
-        if(photosStartTimer) clearTimeout(photosStartTimer);
-        photosStartTimer = setTimeout(()=> startPhotoShowOnce(), totalMs + 200); // 留 200ms 缓冲
-      } else {
-        stopPhotoShow();
-      }
     }
-
     function playSequential(){
       const paras = Array.from(document.querySelectorAll('#letter p'));
       paras.forEach((p,i)=>{
@@ -334,94 +265,17 @@
         setTimeout(()=>p.classList.add('show'), delay);
       });
     }
-
     function resetAll(){
       const paras = Array.from(document.querySelectorAll('#letter p'));
       paras.forEach(p=>p.classList.remove('show'));
       window.scrollTo({top:0, behavior:'smooth'});
     }
-
     document.getElementById('play').addEventListener('click', playSequential);
     document.getElementById('reset').addEventListener('click', resetAll);
     document.getElementById('prevPage').addEventListener('click', ()=>renderPage(currentPage-1));
     document.getElementById('nextPage').addEventListener('click', ()=>{ if(currentPage===pages.length-1){ renderPage(0); } else { renderPage(currentPage+1); } });
-
-    /* ===== 照片：每张只出现一次 & 文字结束后再开始 ===== */
-    // 把文件放和 index.html 同目录；若放在 photos/ 里，请在文件名前加 'photos/'
-    const PHOTO_SRCS = [
-      '02.jpg','03.jpg','04.jpg','05.jpg','07.jpg','DSC08214.jpg'
-    ];
-    const PHOTO_GAP = 1200;      // 每隔多久放下一张
-    const PHOTO_LIFETIME = 5200; // 单张从淡入到移除的总时长
-
-    let photoTimeouts = [];
-    let photosStartTimer = null;
-
-    function clearTimers(list){ list.forEach(id=>clearTimeout(id)); list.length = 0; }
-
-    function shuffle(arr){
-      const a = arr.slice();
-      for(let i=a.length-1;i>0;i--){
-        const j = Math.floor(Math.random()*(i+1));
-        [a[i],a[j]] = [a[j],a[i]];
-      }
-      return a;
-    }
-
-    function spawnPhoto(stage, src){
-      const img = new Image();
-      img.src = src;
-      img.className = 'photo';
-
-      img.onload = () => {
-        const maxW = stage.clientWidth;
-        const maxH = stage.clientHeight;
-
-        // 随机尺寸：相对舞台宽度 28%~45%
-        const scale = 0.28 + Math.random()*0.17;
-        const w = Math.max(120, Math.min(maxW*scale, img.naturalWidth));
-        const h = img.naturalHeight * (w / img.naturalWidth);
-        img.style.width = w + 'px';
-
-        // 随机位置与旋转
-        const x = Math.random() * Math.max(1, (maxW - w));
-        const y = Math.random() * Math.max(1, (maxH - h));
-        const rot = (Math.random()*24 - 12).toFixed(1);
-        img.style.transform = `translate(${x}px, ${y}px) rotate(${rot}deg)`;
-        img.style.zIndex = String(100 + Math.floor(Math.random()*200));
-
-        stage.appendChild(img);
-
-        // 淡入 → 淡出 → 移除
-        requestAnimationFrame(()=> img.classList.add('in'));
-        photoTimeouts.push(setTimeout(()=> img.classList.add('out'), PHOTO_LIFETIME - 1300));
-        photoTimeouts.push(setTimeout(()=> { if (img.parentNode) stage.removeChild(img); }, PHOTO_LIFETIME));
-      };
-
-      img.onerror = () => console.warn('图片加载失败：', src);
-    }
-
-    function startPhotoShowOnce(){
-      const stage = document.getElementById('photoStage');
-      if(!stage) return;
-      stopPhotoShow();
-      stage.innerHTML = '';
-
-      const queue = shuffle(PHOTO_SRCS); // 乱序，仅一轮
-      queue.forEach((src, i)=>{
-        photoTimeouts.push(setTimeout(()=> spawnPhoto(stage, src), i * PHOTO_GAP));
-      });
-    }
-
-    function stopPhotoShow(){
-      if(photosStartTimer){ clearTimeout(photosStartTimer); photosStartTimer = null; }
-      clearTimers(photoTimeouts);
-      const stage = document.getElementById('photoStage');
-      if(stage) stage.innerHTML = '';
-    }
-
-    // 初始渲染第一页
     renderPage(0);
   </script>
 </body>
 </html>
+   
