@@ -67,12 +67,16 @@
     </div>
 
     <article id="letter">
+      <!-- 第 1 页 -->
       <p>或许你还没有醒</p>
       <p>我想了很久还是决定把这最后一封信写给你</p>
       <p>如果说这几天你把对我的沉默和冷淡</p>
       <p>视作你最后的倔强和名为尊严的战场</p>
       <p>你已经赢下这场战役</p>
 
+      <p class="sep">⸻</p>
+
+      <!-- 第 2 页 -->
       <p>这些天我一直在等你的信息</p>
       <p>我不停的告诉你自己</p>
       <p>你不是那样冷漠的人</p>
@@ -81,6 +85,9 @@
       <p>因为等不到你</p>
       <p>昨晚鼓起勇气走到你的直播间</p>
 
+      <p class="sep">⸻</p>
+
+      <!-- 第 3 页 -->
       <p>你知道我还在生病</p>
       <p>却漠不关心</p>
       <p>以及在直播间视我的留言为空气</p>
@@ -91,6 +98,9 @@
       <p>你的冷漠和视我为透明</p>
       <p>和那些曾经霸凌过我，冷暴力我的人没什么两样</p>
 
+      <p class="sep">⸻</p>
+
+      <!-- 第 4 页 -->
       <p>我终究失去了那个曾经的你</p>
       <p>那个说过要陪我走到毕业的你</p>
       <p>说我到了沈阳时，要告诉我旅行攻略的</p>
@@ -102,6 +112,9 @@
       <p>那个真诚的 我最最信任的</p>
       <p>可以推心置腹的你</p>
 
+      <p class="sep">⸻</p>
+
+      <!-- 第 5 页 -->
       <p>那天，你在直播间说要唱一首为你写诗</p>
       <p>因为是花生和鹿鹿的小红书百天</p>
       <p>你知道么，我飞往布拉格的那一天</p>
@@ -117,6 +130,9 @@
       <p>想打语音给你</p>
       <p>想听到你告诉我不要怕</p>
 
+      <p class="sep">⸻</p>
+
+      <!-- 第 6 页（已按你的文本改写） -->
       <p>我知道前些日子你的生活也经历了一些变动</p>
       <p>我听得到你在直播间的声音</p>
       <p>也听得到你的疲惫 你的不快乐 你的强颜欢笑</p>
@@ -133,12 +149,18 @@
       <p>但你关上了那扇门 不愿意对我敞开心扉</p>
       <p>现在，我想你其实并不需要</p>
 
+      <p class="sep">⸻</p>
+
+      <!-- 第 7 页 -->
       <p>或许前些日子和你断交让你内心也受到了伤害</p>
       <p>或许那段时间你也是需要我的</p>
       <p>不过没关系</p>
       <p>你没有和我说过断交 也没有取关</p>
       <p>但你这些天对我的冷处理已经达到了同样的效果</p>
 
+      <p class="sep">⸻</p>
+
+      <!-- 第 8 页 -->
       <p>昨夜，</p>
       <p>我迷迷糊糊的回到了五月初的某个夏夜</p>
       <p>梦里在和你，鹿鹿，oio 还有几个现在不常来的朋友一起峡谷组局</p>
@@ -147,6 +169,9 @@
       <p>然后我笑着笑着醒了</p>
       <p>醒着醒着哭了</p>
 
+      <p class="sep">⸻</p>
+
+      <!-- 第 9 页 -->
       <p>还有六月里的某个晚上</p>
       <p>播了好多首老歌</p>
       <p>都是大家听过的</p>
@@ -156,18 +181,27 @@
       <p>日后每次你说自己是老头</p>
       <p>我总以为可以回到那时的人和事</p>
 
+      <p class="sep">⸻</p>
+
+      <!-- 第 10 页 -->
       <p>但是我忘了</p>
       <p>世界上根本没有时光机这回事</p>
       <p>那个直播间</p>
       <p>曾经我快乐的源泉</p>
       <p>已经回不去</p>
 
+      <p class="sep">⸻</p>
+
+      <!-- 第 11 页 -->
       <p>这并不是我第一次给你写信</p>
       <p>但我想 一定是最后一次了吧</p>
       <p>至少我可以说，</p>
       <p>我对你</p>
       <p>至始至终，都坦诚相对</p>
 
+      <p class="sep">⸻</p>
+
+      <!-- 第 12 页 -->
       <p>我将会体面的离开</p>
       <p>不会留下任何遗憾和痕迹</p>
 
@@ -176,9 +210,12 @@
       <p>是我自己选择的</p>
       <p>没错</p>
       <p>离开你和你的直播间</p>
-      <p>于我，是你想象不到的沉重与痛苦的选择</p>
+      <p>是你想象不到的沉重与痛苦的选择</p>
       <p>但是你促成了我的选择</p>
 
+      <p class="sep">⸻</p>
+
+      <!-- 第 13 页 -->
       <p>若是你心愿</p>
       <p>已遂，祝好</p>
     </article>
@@ -194,18 +231,17 @@
   <div class="hint" id="audioHint">🔔 点击开启背景音乐</div>
 
   <script>
+    // 音乐淡入
     const bgm = document.getElementById('bgm');
     const audioBtn = document.getElementById('audioBtn');
     const audioHint = document.getElementById('audioHint');
-
     function setAudioBtnPlaying(isPlaying){
       audioBtn.textContent = isPlaying ? '🔊 正在播放' : '🔇 已暂停';
       audioBtn.classList.toggle('pulse', !isPlaying);
     }
     const FADE_MS = 2000;
     function fadeInAudio(audio, ms = FADE_MS) {
-      audio.volume = 0;
-      audio.muted = true;
+      audio.volume = 0; audio.muted = true;
       const start = performance.now();
       return audio.play().then(() => {
         audio.muted = false;
@@ -218,22 +254,14 @@
       });
     }
     async function tryPlay(){
-      try{
-        await fadeInAudio(bgm, FADE_MS);
-        setAudioBtnPlaying(true);
-        audioHint.style.display = 'none';
-      }catch(err){
-        setAudioBtnPlaying(false);
-        audioHint.style.display = 'block';
-      }
+      try{ await fadeInAudio(bgm, FADE_MS); setAudioBtnPlaying(true); audioHint.style.display = 'none'; }
+      catch{ setAudioBtnPlaying(false); audioHint.style.display = 'block'; }
     }
-    audioBtn.addEventListener('click', async ()=>{
-      if(bgm.paused){ await tryPlay(); }
-      else{ bgm.pause(); setAudioBtnPlaying(false); }
-    });
+    audioBtn.addEventListener('click', async ()=>{ if(bgm.paused){ await tryPlay(); } else { bgm.pause(); setAudioBtnPlaying(false); }});
     audioHint.addEventListener('click', tryPlay);
     window.addEventListener('DOMContentLoaded', tryPlay);
 
+    // 分页渲染
     const article = document.getElementById('letter');
     const allNodes = Array.from(article.children);
     const pages = [[]];
@@ -241,6 +269,7 @@
       if(node.classList && node.classList.contains('sep')){ pages.push([]); }
       else{ pages[pages.length-1].push(node); }
     });
+
     let currentPage = 0;
     function renderPage(idx){
       currentPage = Math.max(0, Math.min(idx, pages.length-1));
@@ -257,6 +286,7 @@
       playSequential();
       window.scrollTo({top:0, behavior:'smooth'});
     }
+
     function playSequential(){
       const paras = Array.from(document.querySelectorAll('#letter p'));
       paras.forEach((p,i)=>{
@@ -270,12 +300,14 @@
       paras.forEach(p=>p.classList.remove('show'));
       window.scrollTo({top:0, behavior:'smooth'});
     }
+
     document.getElementById('play').addEventListener('click', playSequential);
     document.getElementById('reset').addEventListener('click', resetAll);
     document.getElementById('prevPage').addEventListener('click', ()=>renderPage(currentPage-1));
     document.getElementById('nextPage').addEventListener('click', ()=>{ if(currentPage===pages.length-1){ renderPage(0); } else { renderPage(currentPage+1); } });
+
+    // 初始渲染
     renderPage(0);
   </script>
 </body>
 </html>
-   
